@@ -25,11 +25,11 @@ function uploadPhoto(drug = false, _file = null) {
     reader.readAsDataURL(file);
     reader.addEventListener("load", function () {   
         photoImage.setAttribute('src', reader.result);
-        photoImage.width = 300;
-        photoImage.height = 300;
+        //photoImage.width = 300;
+        //photoImage.height = 300;
         photoImage.style.borderRadius = '10%';
-        photoImage.style.marginTop = '15px';
-        photoImage.style.marginLeft = '15px';
+        //photoImage.style.marginTop = '15px';
+        //photoImage.style.marginLeft = '15px';
 
          uploadedPhoto = reader.result;
         if(checkedStyle != ""){
