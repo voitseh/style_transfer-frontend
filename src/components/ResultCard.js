@@ -3,18 +3,13 @@ import {Card, CardMedia, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 const style = {
-  left:15,
   top:-75,
-  width:300,
+  width:'90%',
   height:300,
-  margin: 12,
-  marginLeft: 0, display: 'block'
+  display: 'block'
 };
 const style_card = {
- 
-  width:330,
-  height:330,
-  margin:20
+  height:340,
 };
 
 const CardResult = () => (

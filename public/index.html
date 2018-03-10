@@ -25,25 +25,27 @@
         </center>
       </td>
     </tr>
-    <tr>
-      <td style="position:relative; float:left;left:0%; top:-5px; width:50%">
+    <tr style="position:relative; height:40%">
+      <td style="position:relative; float:left;left:0%; top:-5px;height:100%; width:50%">
 
          
         <div>
           <h1 style="height:15px">PHOTO</h1>
           <div id="upload_photo_bttn" style="position:relative; float:left; top:0px"></div>
-          <div id="stylize_photo_bttn" style="position:relative; float:right; top:0px;left:16% "></div>
+          <div id="stylize_photo_bttn" style="position:relative; float:right; top:0px;left:18% "></div>
           
-          <div style="position:relative; float:left; top:0px; left:0px; border: 1px solid rgb(204, 204, 204); width:116%; height:130%">
+          <div style="position:relative; float:left; top:0px; left:0px; border: 1px solid rgb(204, 204, 204); width:116%; height:100%">
             <input type="file" onchange="uploadPhoto()" name="photoFile" id="photoFile" style="display: none;">
-            <div id="card_photo" style="position:relative; float:left"></div>
+            <div id="card_photo" style="position:relative; float:left;  width:45%; margin:2%"></div>
                        
-            <div id="card_result" style="position:absolute; float:right; top:0px; right:-2px"></div>
-            <div style="position:relative; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:25.3%; top:35px; width:40.3%; height:299px;  border-radius: 10%;"></div>
+            <div id="card_result" style="position:absolute;width:45%; float:right; right:0%; margin:2%"></div>
+            <div style="position:relative; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:25.5%; top:33px; width:40.3%; height:299px;  border-radius: 10%;">
+              <div id="loading_progress" style="position:relative;left:0px; top:130px"></div>
+            </div>
             
-            <div id="loading_progress" style="position:relative;left:13%; top:-135px"></div>
+          
             
-            <div id="drop_area" style="position:absolute; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:4.7%; top:35px; width:40.5%; height:299px;  border-radius: 10%;"></div-->
+            <div id="drop_area" style="position:absolute; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:4.2%; top:33px; width:40.2%; height:299px;  border-radius: 10%;"></div>
           </div>
         
         </div>
@@ -57,7 +59,7 @@
           <input type="file" onchange="uploadStyleFile()" name="styleFile" id="styleFile" style="display: none;" accept=".jpg, .jpeg, .png"/>
           
           <div style="position:relative; float:left; border: 1px solid rgb(204, 204, 204); width:80%; height:371px; left:2%; overflow-y:scroll ">
-              <ul id="style_gallery"></ul>
+              <ul id="style_gallery"  style="position:relative; float:left; width:100%"></ul>
           </div>
         </div>
 

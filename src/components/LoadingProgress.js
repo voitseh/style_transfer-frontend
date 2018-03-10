@@ -2,7 +2,7 @@ import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 const style = {
-  container: {
+  container: {          
     position: 'relative',
     display: 'none',
   },
@@ -17,7 +17,7 @@ const RefreshIndicatorStylizedImgLoading = () => (
     
     <RefreshIndicator
       size={50}
-      left={70}
+      left={-20}
       top={0}
       loadingColor="#FF9800"
       status="loading"
