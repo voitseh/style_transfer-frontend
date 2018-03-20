@@ -6,9 +6,9 @@ const styles = {
   smallIcon: {
     width: 18,
     height: 18,
-    color:'rgb(207, 205, 205)',  
+    color: 'rgb(207, 205, 205)',
   },
-  small: {  
+  small: {
     top: -5,
     right: 5,
     width: 36,
@@ -16,10 +16,10 @@ const styles = {
   },
 };
 
-const DeleteBttn = () => (  
-  <div style={{position:'relative', float:'left', marginLeft:'-30px'}}>
+const DeleteBttn = () => (
+  <div style={{ position: 'relative', float: 'left', marginLeft: '-30px' }}>
     <IconButton tooltip="delete" tooltipPosition="bottom-left" iconStyle={styles.smallIcon}
-        style={styles.small}>
+      style={styles.small}>
       <ActionGrade />
     </IconButton>
   </div>

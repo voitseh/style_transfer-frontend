@@ -8,7 +8,7 @@ const style = {
 
 const FlatButtonUpload_style = () => (
   <div>
-   <RaisedButton label="UPLOAD STYLE" style={style} fullWidth={true}  onClick={() => window.addStyle()}/>
+    <RaisedButton label="UPLOAD STYLE" style={style} fullWidth={true} onClick={() => window.addStyle()} />
   </div>
 );
 

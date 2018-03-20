@@ -13,32 +13,22 @@ import RefreshIndicatorStylizedImgLoading from './components/LoadingProgress';
 import $ from "jquery";
 import registerServiceWorker from './registerServiceWorker';
 
-/*
-import { red500 } from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-const muiTheme = getMuiTheme({
-    palette: {
-      textColor: red500,
-    },
-  });*/
-
 // add Delete buttons to style gallery images
 function addDelBttns(container_id) {
-    var imgId;
-    var imgsCount = $(container_id).children().length;
-    for (var i = 0; i <= imgsCount; i++) {
-      if (i == imgsCount - 1) {
-        imgId = $(container_id).children()[i].lastChild.lastChild.lastChild.id;
-        ReactDOM.render(<MuiThemeProvider><DeleteBttn /></MuiThemeProvider>, document.getElementById(imgId));
-      }
+  var imgId;
+  var imgsCount = $(container_id).children().length;
+  for (var i = 0; i <= imgsCount; i++) {
+    if (i == imgsCount - 1) {
+      imgId = $(container_id).children()[i].lastChild.lastChild.lastChild.id;
+      ReactDOM.render(<MuiThemeProvider><DeleteBttn /></MuiThemeProvider>, document.getElementById(imgId));
     }
-  };
-  //check style gallery image load event
-  document.getElementById("style_gallery")
-    .addEventListener('DOMNodeInserted', function (event) {
-      addDelBttns('#style_gallery');
-    });
-
+  }
+};
+//check style gallery image load event
+document.getElementById("style_gallery")
+  .addEventListener('DOMNodeInserted', function (event) {
+    addDelBttns('#style_gallery');
+  });
 
 ReactDOM.render(<MuiThemeProvider><RaisedButtonUpload_photo /></MuiThemeProvider>, document.getElementById('upload_photo_bttn'));
 ReactDOM.render(<MuiThemeProvider><RaisedButtonStylize_photo /></MuiThemeProvider>, document.getElementById('stylize_photo_bttn'));

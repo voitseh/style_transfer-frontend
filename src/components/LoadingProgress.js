@@ -2,7 +2,7 @@ import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 const style = {
-  container: {          
+  container: {
     position: 'relative',
     display: 'none',
   },
@@ -14,7 +14,7 @@ const style = {
 
 const RefreshIndicatorStylizedImgLoading = () => (
   <div id='linearProgress' style={style.container}>
-    
+
     <RefreshIndicator
       size={50}
       left={-20}

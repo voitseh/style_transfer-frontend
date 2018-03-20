@@ -1,16 +1,15 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
-  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
   <title>Style transfer</title>
   <link rel="stylesheet" href="%PUBLIC_URL%/main.css">
   <script src="%PUBLIC_URL%/jquery.js"></script>
 
   <script type="text/javascript" src="%PUBLIC_URL%/sijax.js"></script>
   <script type="text/javascript">
-    {{ g.sijax.get_js() | safe }}
+    { { g.sijax.get_js() | safe } }
   </script>
 
 </head>
@@ -27,42 +26,35 @@
     </tr>
     <tr style="position:relative; height:40%">
       <td style="position:relative; float:left;left:0%; top:-5px;height:100%; width:50%">
-
-         
         <div>
           <h1 style="height:15px">PHOTO</h1>
           <div id="upload_photo_bttn" style="position:relative; float:left; top:0px"></div>
           <div id="stylize_photo_bttn" style="position:relative; float:right; top:0px;left:18% "></div>
-          
-          <div style="position:relative; float:left; top:0px; left:0px; border: 1px solid rgb(204, 204, 204); width:116%; height:100%">
+
+          <div id="border_large" style="position:relative; float:left; top:0px; left:0px; border: 1px solid rgb(204, 204, 204); width:116%; height:100%">
             <input type="file" onchange="uploadPhoto()" name="photoFile" id="photoFile" style="display: none;">
-            <div id="card_photo" style="position:relative; float:left;  width:45%; margin:2%"></div>
-                       
-            <div id="card_result" style="position:absolute;width:45%; float:right; right:0%; margin:2%"></div>
-            <div id = "border_result" style="position:relative; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:25.5%; top:33px; width:40.3%; height:299px;  border-radius: 10%;">
-              <div id="loading_progress" style="position:relative;left:0px; top:130px"></div>
+            <div id="card_photo" style="position:relative; float:left; top:2px; width:45%; margin:2%"></div>
+            <div id="card_result" style="position:absolute;width:45%; float:right; right:0%; height:340px; margin:2.3%"></div>
+
+            <div id="border_result" style="position:relative; left:25.5%; top:18px; width:45%; height:340px;">
+              <div id="server_response" style="position:relative; left:-7.5%; top:25px"></div>
+              <div id="loading_progress" style="position:relative;left:0px; top:140px"></div>
             </div>
-            
-          
-            
-            <div id="drop_area" style="position:absolute; border: 1px solid rgb(204, 204, 204); border-style:dashed; left:4.2%; top:33px; width:40.2%; height:299px;  border-radius: 10%;"></div>
+            <div id="drop_area" style="position:absolute;  left:4.2%; top:33px; width:40.2%; height:299px; border-radius: 10%;"></div>
           </div>
-        
         </div>
         <div id="download_resultphoto_bttn" style="position:relative; float:right; top:0px; right:-16%"></div>
-        
+
       </td>
       <td style="position:relative; float:right; top:-5px; left:9%; width:50%">
         <div>
           <h1 style="height:15px">STYLE</h1>
           <div id="upload_style_bttn" style="position:relative; top:0px;  width:80%; right:8%"> </div>
           <input type="file" onchange="uploadStyleFile()" name="styleFile" id="styleFile" style="display: none;" accept=".jpg, .jpeg, .png"/>
-          
           <div style="position:relative; float:left; border: 1px solid rgb(204, 204, 204); width:80%; height:371px; left:2%; overflow-y:scroll ">
-              <ul id="style_gallery"  style="position:relative; float:left; width:100%"></ul>
+            <ul id="style_gallery" style="position:relative; float:left; width:100%"></ul>
           </div>
         </div>
-
       </td>
 
       <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
@@ -82,8 +74,7 @@
     </tr>
     <script src="%PUBLIC_URL%/main.js"></script>
   </table>
-
-
+  
 </body>
 
 </html>
