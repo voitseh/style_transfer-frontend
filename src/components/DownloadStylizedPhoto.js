@@ -32,7 +32,7 @@ export default class RaisedButtonDownloadStylized_photo extends Component {
   render() {
     return (
       <div>
-        <RaisedButton label="Download stylized photo!" disabled={this.state.disabled} style={style} onClick={() => window.onDownloadStylized_photoBttnClick()} />
+        <RaisedButton label="Download stylized photo" disabled={this.state.disabled} style={style} onClick={() => window.onDownloadStylized_photoBttnClick()} />
       </div>
     );
   }

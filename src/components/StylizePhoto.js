@@ -31,9 +31,20 @@ export default class RaisedButtonStylize_photo extends Component {
   }
   render() {
     return (
+    
       <div>
-        <RaisedButton label="Stylize photo" disabled={this.state.disabled} style={style} onClick={() => window.onStylizeBttnClick()} />
+        <RaisedButton
+      
+        label="Stylize photo"
+        
+        disabled={this.state.disabled}
+        
+        style={style}
+        
+        onClick={() => window.onStylizeBttnClick()}/>
+        
       </div>
+      
     );
   }
 }
