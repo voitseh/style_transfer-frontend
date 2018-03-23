@@ -5,6 +5,10 @@ var photoImage = null;
 var borderProportion = ''
 var photoElementWidth = ''
 var photoElementHeight = ''
+var photoBorderHeight;
+var photoBorderWidth;
+var uploaded_image;
+var stylized_img
 
 ///////////////////utils/////////////////////////
 function sijax_data(key, value) {
@@ -21,35 +25,49 @@ function element_dim(border_id) {
     borderProportion = photoElementWidth / photoElementHeight;
 }
 
-function imageProperties(photoImage, width, height) {
-    var aspectRatio = width / height;
-    
-    if (aspectRatio <= borderProportion) {
-        // element is border
-        photoImage.style.width = (photoElementHeight * aspectRatio).toString().concat('px')
-        photoImage.style.height = (photoElementHeight).toString().concat('px');
-        var photoImageHeight = photoElementHeight;
-        var photoImageWidth =  photoElementHeight * aspectRatio;
-        // element is paper
-        element_dim('card_photo');
-        var delta = photoElementHeight - photoImageHeight;
-        photoImage.style.marginLeft = ((photoElementWidth - photoImageWidth) / 2).toString().concat('px')
+function uploadedImgProps(img_width, img_height, aspectRatio, flag) {
+    photoImage.style.width = (img_width).toString().concat('px');
+    photoImage.style.height = (img_height).toString().concat('px');
+    element_dim('card_photo');
+    if (flag) {
+        var delta = photoElementHeight - photoBorderHeight;
         photoImage.style.marginTop = (delta / 2).toString().concat('px');
+        photoImage.style.marginLeft = ((photoElementWidth - photoBorderHeight * aspectRatio) / 2).toString().concat('px');
     }
     else {
-        photoImage.style.width = (photoElementWidth).toString().concat('px');
-        photoImage.style.height = (photoElementWidth / aspectRatio).toString().concat('px');
-        var photoImageWidth = photoElementWidth;
-        var photoImageHeight = photoElementWidth / aspectRatio;
-        element_dim('card_photo');
-        var delta = photoElementWidth - photoImageWidth;
+        var delta = photoElementWidth - photoBorderWidth;
         photoImage.style.marginLeft = (delta / 2).toString().concat('px');
-        photoImage.style.marginTop = ((photoElementHeight - photoImageHeight) / 2).toString().concat('px');
+        photoImage.style.marginTop = ((photoElementHeight - photoBorderWidth / aspectRatio) / 2).toString().concat('px');
     }
-
+    element_dim('drop_area');
+}
+function stylizedImgProps(stylized_img, photoImage) {
+    stylized_img.style.width = photoImage.style.width;
+    stylized_img.style.height = photoImage.style.height;
+    stylized_img.style.top = photoImage.style.marginTop;
+    stylized_img.style.left = photoImage.style.marginLeft;
 }
 
+function setImageProperties(photoImage, width, height) {
+    var aspectRatio = width / height;
+    photoBorderHeight = photoElementHeight;
+    photoBorderWidth = photoBorderHeight * photoElementWidth / photoElementHeight;
+    if (aspectRatio <= borderProportion) {
+        uploadedImgProps(photoBorderHeight * aspectRatio, photoBorderHeight, aspectRatio, true)
+    }
+    else {
+        uploadedImgProps(photoBorderWidth, photoBorderWidth / aspectRatio, aspectRatio, false)
+    }
+}
 
+window.onresize = function () {
+    // resize uploaded image
+    element_dim('drop_area');
+    photoBorderHeight = photoElementHeight
+    setImageProperties(photoImage, uploaded_image.width, uploaded_image.height)
+    // resize stylized image
+    stylizedImgProps(stylized_img, photoImage)
+}
 //////////// form submit settings ///////////////
 function uploadPhoto(drug = false, _file = null) {
     photoImage = document.getElementById('photoImg');
@@ -64,13 +82,13 @@ function uploadPhoto(drug = false, _file = null) {
     reader.readAsDataURL(file);
     reader.addEventListener("load", function () {
         photoImage.setAttribute('src', reader.result);
-        var image = new Image();
-        image.src = reader.result;
+        uploaded_image = new Image();
+        uploaded_image.src = reader.result;
 
-        image.onload = function () {
+        uploaded_image.onload = function () {
             // send loaded img dimensions to PhotoCard component
-            element_dim('drop_area');
-            imageProperties(photoImage, image.width, image.height)
+            //element_dim('drop_area');
+            setImageProperties(photoImage, uploaded_image.width, uploaded_image.height)
         };
         uploadedPhoto.splice(0, uploadedPhoto.length);
         uploadedPhoto.push(file.name)
@@ -105,7 +123,7 @@ function uploadStyleFile() {
     var file = document.getElementById('styleFile').files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.addEventListener("load", function () { 
+    reader.addEventListener("load", function () {
         var uploadedStyle = [file.name, reader.result]
         sijax_data('styleFile', uploadedStyle)
     }, false);
@@ -114,7 +132,7 @@ function addStyle() {
     document.getElementById('styleFile').click();
 }
 // handle style check event
-$('body').on('click', 'img', function () {         
+$('body').on('click', 'img', function () {
     checkedStyle.splice(0, checkedStyle.length);
     checkedStyle.push(this.getAttribute("name"));
     checkedStyle.push(this.getAttribute("src"));
@@ -137,6 +155,8 @@ $(function () {
 });
 //////////// fill styles gallery///////////////////
 window.onload = function () {
+    element_dim('drop_area');
+
     setBttnDownloadStylized_photoDisabled();
     sijax_data('style_gallery', 'style_gallery')
 }
@@ -159,28 +179,24 @@ function onStylizedImgLoadsHandler(event) {
 
     }
 
-    var img = event.target;
+    stylized_img = event.target;
     if (event.target.localName == 'img') {
-        img.style.width = photoImage.style.width;
-        img.style.height = photoImage.style.height;
-        img.style.top = photoImage.style.marginTop;
-        img.style.left = photoImage.style.marginLeft;
+        stylizedImgProps(stylized_img, photoImage)
         document.getElementById('stylizedCardMedia').style.display = 'none'
+        document.getElementById('linearProgress').style.display = 'none'
         setBttnDownloadStylized_photoEnabled();
     }
-
-
 };
 //check stylized image loads event
-document.getElementById("border_result")
+document.getElementById("card_result")
     .addEventListener('DOMNodeInserted', onStylizedImgLoadsHandler);
 
-function onGalletyLoadsHandler(event){
+function onGalletyLoadsHandler(event) {
     document.getElementById("_img0").click();
 }
 //click style image on styles gallery loads event
 document.getElementById("style_gallery")
-.addEventListener('DOMNodeInserted', onGalletyLoadsHandler);
+    .addEventListener('DOMNodeInserted', onGalletyLoadsHandler);
 
 /* Download an img */
 function download(img, title) {
