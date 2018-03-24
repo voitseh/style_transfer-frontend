@@ -8,7 +8,7 @@ var photoElementHeight = ''
 var photoBorderHeight;
 var photoBorderWidth;
 var uploaded_image;
-var stylized_img
+var stylized_img;
 
 ///////////////////utils/////////////////////////
 function sijax_data(key, value) {
@@ -66,7 +66,9 @@ window.onresize = function () {
     photoBorderHeight = photoElementHeight
     setImageProperties(photoImage, uploaded_image.width, uploaded_image.height)
     // resize stylized image
-    stylizedImgProps(stylized_img, photoImage)
+    
+    if(document.getElementById('stylized_img') != null){
+    stylizedImgProps(stylized_img, photoImage)}
 }
 //////////// form submit settings ///////////////
 function uploadPhoto(drug = false, _file = null) {
